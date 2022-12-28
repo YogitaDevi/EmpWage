@@ -14,7 +14,7 @@ namespace EmployeeWagesProgram
         public const int empRatePerHour = 20;
         public const int numOfWorkingDays = 20;
         public const int maxHrsInMonth = 100;
-        public static void wagesForMonth()
+        public static int computeEmpWages()
         {
             int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
             while (totalEmpHrs <= maxHrsInMonth && totalWorkingDays < numOfWorkingDays)
@@ -35,11 +35,13 @@ namespace EmployeeWagesProgram
                         break;
                 }
                 totalEmpHrs += empHrs;
-                Console.WriteLine("Days : " + totalWorkingDays + "Emp Hr :" + empHrs);
+                Console.WriteLine("Day#:" + totalWorkingDays + "Emp Hrs : " + empHrs);
             }
             int totalEmpWage = totalEmpHrs * empRatePerHour;
             Console.WriteLine("Total Emp Wage : " + totalEmpWage);
+            return totalEmpWage;
         }
+        
 
     }
 }
