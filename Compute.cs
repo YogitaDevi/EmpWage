@@ -9,26 +9,27 @@ namespace EmployeeWagesProgram
 {
     public class Compute
     {
-        public static void DailyEmployeeWage()
+        public const int isPartTime = 1;
+        public const int isFullTime = 2;
+        public static void EmployeeWageSwitchCase()
         {
-            int fullTimeEmp = 1;
-            int partTimeEmp = 2;
+            
             int EMP_RATE_PER_HOUR = 20;
             int empHrs = 0;
             int empWage = 0;
             Random random = new Random();
-            int empCheck = random.Next(0, 2);
-            if (empCheck == 1)
+            int empCheck = random.Next(0, 3);
+            switch (empCheck)
             {
-                empHrs = 8;                              //for full time employee
-            }
-            else if (empCheck == 2)
-            {
-                empHrs = 4;                              //for part time employee
-            }
-            else
-            {
-                empHrs = 0;                               //if employee is absent
+                case isPartTime:
+                    empHrs = 4;
+                    break;
+                case isFullTime:
+                    empHrs = 8;
+                    break;
+                default:
+                    empHrs = 0;
+                    break;
             }
             empWage = empHrs * EMP_RATE_PER_HOUR;
             Console.WriteLine("Emp Wage: " + empWage);
