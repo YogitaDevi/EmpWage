@@ -3,6 +3,7 @@ using EmployeeWagesProgram;
 using static EmployeeWagesProgram.Compute;
 
 Console.WriteLine("Welcome to Employee Wage Computation Program");
-Compute EmpPresentAbsent = new Compute();
+Compute DailyEmployeeWage = new Compute();
 
-EmpPresentAbsent.PresentAbsent();
+//EmpPresentAbsent.PresentAbsent();
+Compute.DailyEmployeeWage();
