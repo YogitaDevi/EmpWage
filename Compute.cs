@@ -11,28 +11,27 @@ namespace EmployeeWagesProgram
     {
         public const int isPartTime = 1;
         public const int isFullTime = 2;
-        public static void EmployeeWageSwitchCase()
+        public const int empRatePerHour = 20;
+        public const int numOfWorkingDays = 20;
+        public static void wagesForMonth()
         {
-            
-            int EMP_RATE_PER_HOUR = 20;
-            int empHrs = 0;
-            int empWage = 0;
+            int empHrs = 0,  totalEmpWage = 0;          
             Random random = new Random();
             int empCheck = random.Next(0, 3);
             switch (empCheck)
             {
                 case isPartTime:
                     empHrs = 4;
-                    break;
+                break;
                 case isFullTime:
                     empHrs = 8;
-                    break;
+                break;
                 default:
-                    empHrs = 0;
-                    break;
+                     empHrs = 0;
+                break;
             }
-            empWage = empHrs * EMP_RATE_PER_HOUR;
-            Console.WriteLine("Emp Wage: " + empWage);
+            totalEmpWage = (empHrs * empRatePerHour) * numOfWorkingDays;               
+            Console.WriteLine("Total Emp Wage A Month : " + totalEmpWage);
         }
 
     }
