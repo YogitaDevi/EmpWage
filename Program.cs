@@ -1,8 +1,14 @@
-﻿
+﻿using System;
 using EmployeeWagesProgram;
-using static EmployeeWagesProgram.Compute;
 
-Console.WriteLine("Welcome to Employee Wage Computation Program");
-Compute computeEmpWages = new Compute();
-
-Compute.computeEmpWages();
+namespace EmployeeWagesProgram
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Compute.computeEmpWage("DMart", 20, 20, 100);
+            Compute.computeEmpWage("Reliance", 20, 20, 100);
+        }
+    }
+}

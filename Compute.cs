@@ -11,13 +11,10 @@ namespace EmployeeWagesProgram
     {
         public const int isPartTime = 1;
         public const int isFullTime = 2;
-        public const int empRatePerHour = 20;
-        public const int numOfWorkingDays = 20;
-        public const int maxHrsInMonth = 100;
-        public static int computeEmpWages()
+        public static int computeEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
         {
             int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
-            while (totalEmpHrs <= maxHrsInMonth && totalWorkingDays < numOfWorkingDays)
+            while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays)
             {
                 totalWorkingDays++;
                 Random random = new Random();
@@ -35,13 +32,13 @@ namespace EmployeeWagesProgram
                         break;
                 }
                 totalEmpHrs += empHrs;
-                Console.WriteLine("Day#:" + totalWorkingDays + "Emp Hrs : " + empHrs);
+                Console.WriteLine("Days:" + totalWorkingDays + "Emp Hrs :" + empHrs);
+
             }
             int totalEmpWage = totalEmpHrs * empRatePerHour;
-            Console.WriteLine("Total Emp Wage : " + totalEmpWage);
+            Console.WriteLine("TotalmEmp Wage for company : " + company + "is : " + totalEmpWage);
             return totalEmpWage;
         }
-        
 
     }
 }
