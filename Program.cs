@@ -1,14 +1,9 @@
 ﻿using System;
 using EmployeeWagesProgram;
 
-namespace EmployeeWagesProgram
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Compute.computeEmpWage("DMart", 20, 20, 100);
-            Compute.computeEmpWage("Reliance", 20, 20, 100);
-        }
-    }
-}
+Compute dMart = new Compute("Dmart", 20, 2, 10, 200);
+Compute reliance = new Compute("Reliance", 10, 4, 20, 150);
+dMart.computeEmpWage();
+Console.WriteLine(dMart.toString());
+reliance.computeEmpWage();
+Console.WriteLine(reliance.toString());
