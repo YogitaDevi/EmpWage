@@ -4,57 +4,63 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using EmployeeWagesProgram;
 
 namespace EmployeeWagesProgram
 {
     public class Compute
     {
-        public const int IsPartTime = 1;
-        public const int IsFullTime = 2;
+        public const int isPartTime = 1;
+        public const int isFullTime = 2;
+        private int numOfCompany = 0;
+      
 
-        private string company;
-        private int empRatePerHour;
-        private int numOfWorkingDays;
-        private int maxHourPerMonth;
-        private int totalEmpWage;
-        public Compute(string company, int empRatePerHour, int numOfWorkingDays, int maxHourPerMonth, int totalEmpWage)
+        private CompanyEmpWage[] companyEmpWageArray;
+        public Compute()
         {
-            this.company = company;
-            this.empRatePerHour = empRatePerHour;
-            this.numOfWorkingDays = numOfWorkingDays;
-            this.maxHourPerMonth = maxHourPerMonth;
-            this.totalEmpWage = totalEmpWage;
+            this.companyEmpWageArray = new CompanyEmpWage[5];
+
+        }
+
+        public void addCompanyEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
+        {
+            companyEmpWageArray[this.numOfCompany] = new CompanyEmpWage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
+            numOfCompany++;
         }
         public void computeEmpWage()
         {
+            for (int i = 0; i < numOfCompany; i++)
+            {
+                companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArray[i]));
+                Console.WriteLine(this.companyEmpWageArray[i].toString());
+            }
+        }
+        private int computeEmpWage(CompanyEmpWage companyEmpWage)
+        {
             int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
-            while (totalEmpHrs <= this.maxHourPerMonth && totalWorkingDays < this.numOfWorkingDays)
+            while (totalEmpHrs <= companyEmpWage.maxHoursPerMonth && totalWorkingDays < companyEmpWage.numOfWorkingDays)
             {
                 totalWorkingDays++;
                 Random random = new Random();
                 int empCheck = random.Next(0, 3);
                 switch (empCheck)
                 {
-                    case IsPartTime:
+                    case isPartTime:
                         empHrs = 4;
                         break;
-                    case IsFullTime:
+                    case isFullTime:
                         empHrs = 8;
                         break;
                     default:
                         empHrs = 0;
                         break;
-
                 }
                 totalEmpHrs += empHrs;
-                Console.WriteLine("Day#:" + totalWorkingDays + "Emp Hrs : " + empHrs);
+                Console.WriteLine("Day#:" + totalWorkingDays + " Emp Hrs : " + empHrs);
 
             }
-            totalEmpWage = totalEmpHrs + this.empRatePerHour;
+            return totalEmpHrs * companyEmpWage.empRatePerHour;
         }
-        public string toString()
-        {
-            return "Total Emp wage for company : " + this.company + " is : " + this.totalEmpWage;
-        }   
+        
     }
 }
